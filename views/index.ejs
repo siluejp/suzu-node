@@ -52,6 +52,7 @@ canvas.width = 480;
 canvas.height = 360;  
 btn2.disabled = true;
 btn3.disabled = true;
+btn4.disabled = true;
 function start() {
   navigator.webkitGetUserMedia({video:true}, gotStream, function() {}); 
   btn1.disabled = true;
@@ -60,6 +61,7 @@ function gotStream(stream) {
   video.src = webkitURL.createObjectURL(stream);
   btn2.disabled = false;
   btn3.disabled = false;
+  btn4.disabled = false;
 }
 function change() {
   video.className = '';
