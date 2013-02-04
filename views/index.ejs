@@ -77,31 +77,21 @@ function snap() {
 }
 function download() {
   if (canvas.getContext) {
-// canvas は <canvas> 要素のリファレンスです。
-var context = canvas.getContext('2d');
-
-// 空のスレートを生成
-var data = context.createImageData(canvas.width, canvas.height);
-
-// canvas にプラズマ+クラウドを描画する
-context.putImageData(data, 0, 0);
-
-
-    //var ctx = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
     //色々な図形の描画など・・・・・
     //図形の保存
-    //var img=new Image();
+    var img=new Image();
  
     //保存できるタイプは、'image/png'と'image/jpeg'の2種類
  
-    //var type = 'image/png';  
+    var type = 'image/png';  
  
     //imgオブジェクトのsrcに格納。
-    //img.src = canvas.toDataURL(type);
+    img.src = canvas.toDataURL(type);
     //念のため、onloadで読み込み完了を待つ。
-    //img.onload = function(){
-    //   window.open(img.src, "", "width=480,height=360");
-    //};
+    img.onload = function(){
+       window.open(img.src, "", "width=480,height=360");
+    };
   }
 }
 </script>
