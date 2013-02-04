@@ -42,6 +42,7 @@ button {
 <button id="btn1" onclick="start()">Start</button>
 <button id="btn2" onclick="change()">Change Filter</button>
 <button id="btn3" onclick="snap()">Snapshot</button>
+<button id="btn4" onclick="download()">Download</button>
 <script>
 filters = ["", "sepia", "invert", "blur", "grayscale"];
 findex = 0;
@@ -71,6 +72,25 @@ function snap() {
   if (findex != 0)
     canvas.classList.add(filters[findex]);
   canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+}
+function download() {
+  if (canvas.getContext) {
+    var  ctx = canvas.getContext('2d');
+    //色々な図形の描画など・・・・・
+    //図形の保存
+    var img=new Image();
+ 
+    //保存できるタイプは、'image/png'と'image/jpeg'の2種類
+ 
+    var type = 'image/png';  
+ 
+    //imgオブジェクトのsrcに格納。
+    img.src = canvas.toDataURL(type);
+    //念のため、onloadで読み込み完了を待つ。
+    img.onload = function(){
+       window.open(img.src, "", "width=480,height=360");
+    };
+}
 }
 </script>
 <h3>感想カンソー powered by Node.js, Express Framework, MongoDB, on Heroku and WebRTC!!</h3>
