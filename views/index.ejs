@@ -34,6 +34,8 @@ button {
 <body>
 <h1>WebRTC DEMO getUserMedia | suzu-node</h1>
 <h2>ビデオチャットの前準備。カメラで遊ぼう</h2>
+<p>StartでカメラをONにして、Change Filterでエフェクトをかけて、<br/>
+最後にSnapshotでお気に入りの一枚を撮ろう</p>
 <video id="vid" autoplay="true"></video>
 <canvas id="cvs"></canvas>
 <br>
@@ -71,7 +73,7 @@ function snap() {
   canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
 }
 </script>
-<h3>叫んでみよう！ powered by MongoDB</h3>
+<h3>感想カンソー powered by Node.js, Express Framework, MongoDB, on Heroku and WebRTC!!</h3>
 <p><a href="/form">Shout!</a></p>
 <ul>
 <% items.forEach(function(item){ %>
