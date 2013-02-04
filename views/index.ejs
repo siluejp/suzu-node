@@ -32,15 +32,8 @@ button {
 </style>
 </head>
 <body>
-<h1><%= title %></h1>
-<h2>suzu-node</h2>
-<h3>叫んでみよう！ powered by MongoDB</h3>
-<p><a href="/form">New Entry</a></p>
-<ul>
-<% items.forEach(function(item){ %>
-  <li><%= item.text %></li>
-<% }) %>
-</ul>
+<h1>WebRTC DEMO getUserMedia | suzu-node</h1>
+<h2>ビデオチャットの前準備。カメラで遊ぼう</h2>
 <video id="vid" autoplay="true"></video>
 <canvas id="cvs"></canvas>
 <br>
@@ -78,6 +71,13 @@ function snap() {
   canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
 }
 </script>
+<h3>叫んでみよう！ powered by MongoDB</h3>
+<p><a href="/form">Shout!</a></p>
+<ul>
+<% items.forEach(function(item){ %>
+  <li><%= item.text %></li>
+<% }) %>
+</ul>
 </body>
 </html>
 
