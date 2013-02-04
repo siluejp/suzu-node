@@ -33,7 +33,7 @@ button {
 </head>
 <body>
 <h1>WebRTC DEMO getUserMedia | suzu-node</h1>
-<h2>ビデオチャットの前準備。カメラで遊ぼう</h2>
+<h2>ビデオチャットの下準備。カメラで遊ぼう</h2>
 <p>StartでカメラをONにして、Change Filterでエフェクトをかけて、<br/>
 最後にSnapshotでお気に入りの一枚を撮ろう</p>
 <video id="vid" autoplay="true"></video>
@@ -75,7 +75,7 @@ function snap() {
 }
 function download() {
   if (canvas.getContext) {
-    var  ctx = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
     //色々な図形の描画など・・・・・
     //図形の保存
     var img=new Image();
@@ -90,7 +90,7 @@ function download() {
     img.onload = function(){
        window.open(img.src, "", "width=480,height=360");
     };
-}
+  }
 }
 </script>
 <h3>感想カンソー powered by Node.js, Express Framework, MongoDB, on Heroku and WebRTC!!</h3>
