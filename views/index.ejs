@@ -57,21 +57,21 @@ function start() {
     var userAgent = window.navigator.userAgent.toLowerCase();
 
     if (userAgent.indexOf('chrome') != -1) {
-      navigator.webkitGetUserMedia({video:true}, gotStream, function() {});
+      navigator.webkitGetUserMedia({video:true}, gotStream, function(err) {alert("An error occured! " + err);});
     } else if (userAgent.indexOf('gecko') != -1) {
-      startVideo();
+    alert('FF');  
+    startVideo();
     } else {
       return false;
     }
   
   btn1.disabled = true;
-}
+} 
 function startVideo() {
     navigator.mozGetUserMedia({video: true},
         function(stream) {
             video.src = stream;
             video.play();
-            streaming = true;
             btn2.disabled = false;
             btn3.disabled = false;
             btn4.disabled = false;
