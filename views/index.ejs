@@ -71,7 +71,7 @@ function startVideo() {
     navigator.mozGetUserMedia({video: true},
         function(stream) {
             video.src = window.URL.createObjectURL(stream);
-            //video.play();
+            video.play();
             btn2.disabled = false;
             btn3.disabled = false;
             btn4.disabled = false;
