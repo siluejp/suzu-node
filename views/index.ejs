@@ -54,13 +54,35 @@ btn2.disabled = true;
 btn3.disabled = true;
 btn4.disabled = true;
 function start() {
-  navigator.webkitGetUserMedia({video:true}, gotStream, function() {}); 
+    var userAgent = window.navigator.userAgent.toLowerCase();
+
+    if (userAgent.indexOf('chrome') != -1) {
+      navigator.webkitGetUserMedia({video:true}, gotStream, function() {});
+    } else if (userAgent.indexOf('gecko') != -1) {
+      startVideo();
+    } else {
+      return false;
+    }
+  
   btn1.disabled = true;
+}
+function startVideo() {
+    navigator.mozGetUserMedia({video: true},
+        function(stream) {
+            video.src = stream;
+            video.play();
+            streaming = true;
+            btn2.disabled = false;
+            btn3.disabled = false;
+            btn4.disabled = false;
+        },
+    function(err) {
+        alert("An error occured! " + err);
+    });
 }
 function gotStream(stream) {
   video.src = webkitURL.createObjectURL(stream);
-alert('test');  
-btn2.disabled = false;
+  btn2.disabled = false;
   btn3.disabled = false;
   btn4.disabled = false;
 }
@@ -105,5 +127,3 @@ function download() {
 </ul>
 </body>
 </html>
-
-
