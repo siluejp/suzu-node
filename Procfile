@@ -1,1 +1,1 @@
-web: node server_es.js
+web: node server_xhr.js
