@@ -6,7 +6,7 @@ window.onload = function(){
     var score = 0;
     var game = new Game(320, 320);
     game.fps = 15;
-    game.preload("/images/chara1.png");
+    game.preload("images/chara1.png");
 
     game.onload = function(){
     
