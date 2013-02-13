@@ -1,3 +1,4 @@
+var CHARA_IMAGE_NAME = "../images/chara1.png";
 enchant();
 window.onload = function(){
 
@@ -6,8 +7,7 @@ window.onload = function(){
     var score = 0;
     var game = new Game(320, 320);
     game.fps = 15;
-    game.preload("images/chara1.png");
-
+    game.preload(CHARA_IMAGE_NAME);
     game.onload = function(){
     
         var gameOverScene = new Scene();
@@ -20,7 +20,7 @@ window.onload = function(){
                 this.y = y;
                 this.frame = rand(5);
                 this.opacity = rand(100) / 100;
-                this.image = game.assets['chara1.png'];
+                this.image = game.assets[CHARA_IMAGE_NAME];
                 
                 this.addEventListener("enterframe", function(){
 		            this.x += 1;
