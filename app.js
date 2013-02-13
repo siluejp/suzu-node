@@ -37,8 +37,10 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/form', routes.form);
 app.get('/game', routes.game);
+app.get('/score_list', routes.score_list);
 app.post('/create', routes.create);
 app.post('/money', routes.money);
+app.post('/score', routes.score);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

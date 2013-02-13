@@ -12,4 +12,11 @@ var Post = new mongoose.Schema({
   , created: { type: Date, default: Date.now }
 });
 
-exports.Post = db.model('Post', Post);
+var Score = new mongoose.Schema({
+    name   : { type: String, validate: [validator, "Empty Error"] }
+  , score  : { type: String }
+  , created: { type: Date, default: Date.now }
+});
+
+exports.Post  = db.model('Post', Post);
+exports.Score = db.model('Score', Score);
