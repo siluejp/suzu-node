@@ -51,9 +51,6 @@ exports.score = function(req, res){
   newPost.save(function(err){
      if (err) {
        console.log(err);
-       res.redirect('back');
-     } else {
-       res.redirect('/');
      }
     });
 };
