@@ -31,6 +31,7 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/form', routes.form);
+app.get('/game', routes.game);
 app.post('/create', routes.create);
 app.post('/money', routes.money);
 

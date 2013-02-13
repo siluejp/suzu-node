@@ -26,3 +26,7 @@ exports.create = function(req, res){
 exports.money = function(req, res){
   res.render('money');
 }
+
+exports.game = function(req, res){
+  res.render('game');
+}

@@ -104,6 +104,59 @@ window.onhashchange = function (evt) {
 };
 
 </script>
+<script>
+filters = ["", "sepia", "invert", "blur", "grayscale"];
+findex = 0;
+video = document.getElementById("vid");
+canvas = document.getElementById("cvs");
+canvas.width = 480;
+canvas.height = 360;  
+btn2.disabled = true;
+btn3.disabled = true;
+btn4.disabled = true;
+function start() {
+  navigator.webkitGetUserMedia({video:true}, gotStream, function() {});
+  btn1.disabled = true;
+}
+function gotStream(stream) {
+  video.src = webkitURL.createObjectURL(stream);
+alert('test');  
+btn2.disabled = false;
+  btn3.disabled = false;
+  btn4.disabled = false;
+}
+function change() {
+  video.className = '';
+  findex = (findex + 1) % filters.length;
+  if (findex != 0)
+    video.classList.add(filters[findex]);
+}
+function snap() {
+  canvas.className = '';
+  if (findex != 0)
+    canvas.classList.add(filters[findex]);
+  canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+}
+function download() {
+  if (canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+    //色々な図形の描画など・・・・・
+    //図形の保存
+    var img=new Image();
+ 
+    //保存できるタイプは、'image/png'と'image/jpeg'の2種類
+ 
+    var type = 'image/png';  
+ 
+    //imgオブジェクトのsrcに格納。
+    img.src = canvas.toDataURL(type);
+    //念のため、onloadで読み込み完了を待つ。
+    img.onload = function(){
+       window.open(img.src, "", "width=480,height=360");
+    };
+  }
+}
+</script>
 </head>
 <body>
 </body>
