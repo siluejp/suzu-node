@@ -1,4 +1,4 @@
-var CHARA_IMAGE_NAME = "../images/chara1.png";
+var CHARA_IMAGE_NAME = "http://sourcingcrowd.jp/img/chara1.png";
 enchant();
 window.onload = function(){
 
