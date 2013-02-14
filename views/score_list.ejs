@@ -11,7 +11,7 @@
 <ul>
 <% var i = 1; %>
 <% items.forEach(function(item){ %>
-  <li>【<%= i %>】<%= item.created %>: <%= item.score %>点</li>
+  <li>【<%= i %>】<%= item.created.toLocaleString() %>: <%= item.score %>点</li>
 <% i += 1; %>
 <% }) %>
 </ul>
