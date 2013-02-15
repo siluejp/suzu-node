@@ -36,10 +36,10 @@ exports.score_list = function(req, res){
   Score.find({name: 'John'}, function(err, items){
         items.sort(
         function(a,b){
-            var aName = a["score"];
-            var bName = b["score"];
-            if( a > b ) return -1;
-            if( a < b ) return 1;
+            var aName = parseInt(a["score"]);
+            var bName = parseInt(b["score"]);
+            if( parseInt(a) > parseInt(b) ) return -1;
+            if( parseInt(a) < parseInt(b) ) return 1;
             return 0;
         });
         res.render('score_list', { title: 'Entry List', items: items })
