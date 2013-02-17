@@ -31,6 +31,8 @@ app.configure('development', function(){
 
 app.configure('production', function(){
   app.use(express.errorHandler());
+  app.set('transports', ['xhr-polling']);
+  app.set('polling duration', 10);
 });
 
 app.get('/', routes.index);
@@ -48,6 +50,7 @@ app.post('/score', routes.score);
 
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
+
 server.listen(app.get('port'), function(){
    console.log("Express server listening on port " + app.get('port'));
 });
@@ -65,11 +68,6 @@ function broadcast(method, messsage) {
         sockets[n].emit(method, messsage);
     }
 }
-
-io.configure(function () { 
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 10); 
-});
 
 io
 .of('/chat')
