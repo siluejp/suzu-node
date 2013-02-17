@@ -85,8 +85,9 @@ io
     socket.on('disconnect', function() {
        delete sockets[socket.id]; 
     });
- })
- .configure(function () { 
+ });
+
+io.configure(function () { 
   io.set("transports", ["xhr-polling"]); 
   io.set("polling duration", 10); 
 });
