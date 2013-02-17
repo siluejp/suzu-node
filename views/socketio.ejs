@@ -41,7 +41,8 @@ button {
             data.name + ' : ' + data.message + ' ( ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ) ')
         );
     }
-    var socket = io.connect('http://localhost:3000/chat');
+    //var socket = io.connect('http://localhost:3000/chat');
+    var socket = io.connect('https://suzu-node.herokuapp.com/chat');
     socket.on('chat.list', function(list) {
         for (var i = 0; i < list.length; i++){
             addlog(list[i]);
