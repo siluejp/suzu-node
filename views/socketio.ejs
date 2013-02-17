@@ -54,10 +54,18 @@ button {
     
     function send() {
         socket.emit('chat.add', {
-            name: $('#name').val(),
-            message: $('#message').val()
+            name: sanitize($('#name').val()),
+            message: sanitize($('#message').val())
         });
+        alert('送信しました');
         return false;
+    }
+    function sanitize(str) {
+        str = str.replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+        return str;
     }
 </script>
 </head>
@@ -65,7 +73,9 @@ button {
     <p><a href="/">TOPへ</a></p>
 <h1>Socket.IO demo | suzu-node</h1>
 <div>
-    <h2>Send message</h2>
+    <h2>チャットデモ</h2>
+    <p>ブラウザを更新しなくても全てのクライアントに自動反映されます。<br/>
+    PC、スマホともに対応しています。（最初の初期化（チャット履歴を取得）に少々時間が掛かります）</p>
     <form onsubmit="return send();">
         <span>Name:</span>
         <input type="text" id="name" name="name"/>
