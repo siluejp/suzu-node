@@ -42,6 +42,51 @@ app.post('/create', routes.create);
 app.post('/money', routes.money);
 app.post('/score', routes.score);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+//http.createServer(app).listen(app.get('port'), function(){
+//  console.log("Express server listening on port " + app.get('port'));
+//});
+
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+server.listen(app.get('port'), function(){
+   console.log("Express server listening on port " + app.get('port'));
+});
+
+var chats = [];
+var sockets = [];
+
+// broadcast function
+var chats = [];
+var sockets = [];
+
+// broadcast function
+function broadcast(method, messsage) {
+    for (var n in sockets) {
+        sockets[n].emit(method, messsage);
+    }
+}
+
+io
+.of('/chat')
+.on('connection', function(socket) {
+    socket[socket.id] = socket;
+    //socket.emit('chat.list', chats); //イベントを実行した方に実行する
+    socket.on('chat.add', function(data) {
+       data.time = Date.now();
+       chats.push(data);
+       //broadcast('chat.add', data);
+       
+        //イベントを実行した方に実行する
+        socket.emit('chat.add', data);
+        //イベントを実行した方以外に実行する
+        socket.broadcast.emit('chat.add', data);
+       
+    });
+    socket.on('disconnect', function() {
+       delete sockets[socket.id]; 
+    });
+});
+
+app.get('/socket', function(req, res) {
+    res.render('socketio', {title:'Socket.IO Demo'});
 });
