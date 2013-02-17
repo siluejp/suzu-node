@@ -66,6 +66,11 @@ function broadcast(method, messsage) {
     }
 }
 
+io.configure(function () { 
+  io.set("transports", ["xhr-polling"]); 
+  io.set("polling duration", 10); 
+});
+
 io
 .of('/chat')
 .on('connection', function(socket) {
@@ -86,11 +91,6 @@ io
        delete sockets[socket.id]; 
     });
  });
-
-io.configure(function () { 
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 10); 
-});
 
 app.get('/socket', function(req, res) {
     res.render('socketio', {title:'Socket.IO Demo'});
