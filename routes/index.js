@@ -54,3 +54,7 @@ exports.score = function(req, res){
      }
     });
 };
+
+exports.edge = function(req, res){
+  res.render('edge');
+};
