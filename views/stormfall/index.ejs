@@ -29,15 +29,14 @@
     </div>
   </nav>
 
-  <div class="container" style="padding: 40px 15px;">
+  <div class="container" style="padding-top: 40px;">
 
-    <div class="starter-template">
+    <div class="">
       <h1>戦力分析 <small>Battlegrounds Analytics</small></h1>
       <p class="lead">戦場（攻撃）の敵戦力を分析して最適な攻撃ユニットを提案します。</p>
     </div>
 
     <div ng-controller="TodoListController as todoList">
-      <div class="row">
         <table class="table">
           <tr>
             <th>兵数</th>
@@ -58,14 +57,12 @@
           <h2>分析結果</h2>
           <p class="lead">一番低い数値になる兵種で攻めるべし</p>
           <blockquote>
-            <div class="row" ng-repeat="todo in todoList.todos" >
-              <div class="col-md-12">{{todo.type}}のみ: {{todo.output | number}}
+            <div ng-repeat="todo in todoList.todos" >
+              <div>{{todo.type}}のみ: {{todo.output | number}}
                 <span class="label label-success" style="font-size: 11px;" ng-if="todoList.is_min_output(todo.output)">オススメ</span>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12">平均：{{todoList.avg_defense() | number}}</div>
-            </div>
+            <div>平均：{{todoList.avg_defense() | number}}</div>
           </blockquote>
           <p>
             <small>※ ○○のみで攻撃した場合の敵防御力です</small><br>
@@ -73,7 +70,6 @@
             <small>※ 補正値を考慮していないため１〜２割増の戦力で挑むべし</small>
           </p>
         </div>
-      </div>
     </div>
 
   </div><!-- /.container -->
