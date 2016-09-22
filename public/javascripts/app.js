@@ -74,8 +74,16 @@ angular.module('todoApp', [])
     todoList.has_outputs = function() {
         var rtn = true;
         angular.forEach(todoList.todos, function(todo) {
-          if( todo.ammount == null || todo.ammount == '' ) rtn = false;
+          if( ! $.isNumeric(todo.ammount) ) rtn = false;
         });
         return rtn;
+    };
+
+    todoList.is_min_output = function(output) {
+        var rtn = todoList.todos[0].output;
+        angular.forEach(todoList.todos, function(todo) {
+          if( rtn > todo.output ) rtn = todo.output;
+        });
+        return (rtn == output);
     };
   });
