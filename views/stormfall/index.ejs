@@ -49,9 +49,9 @@
             <th>割合</th>
           </tr>
           <tr ng-repeat="todo in todoList.todos">
-            <td><input ng-change="todoList.calc()" type="number" ng-model="todo.ammount" size="10"></td>
+            <td><input ng-change="todoList.calc()" type="number" ng-model="todo.ammount" min="0" max="9999"></td>
             <td>{{todo.type}}</td>
-            <td><img class="img-rounded" ng-src="{{todo.img_url}}" alt="Description" width="20px" /><span style="padding-left: 10px;">{{todo.name}}</span></td>
+            <td><img class="img-rounded" ng-src="{{todo.img_url}}" alt="Description" width="20px" /><span class="hidden-xs" style="padding-left: 10px;">{{todo.name}}</span></td>
             <td>{{todo.defense * todo.ammount}}（{{todo.max_defense * todo.ammount}}）</td>
             <td>{{todo.per | number:2}}</td>
           </tr>
