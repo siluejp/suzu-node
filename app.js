@@ -12,7 +12,7 @@ var express = require('express')
 var app = express();
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', process.env.PORT || 3001);
   app.set('views', __dirname + '/views');
   //app.set('view engine', 'jade');
   app.set('view engine', 'ejs');
@@ -20,9 +20,10 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
+    //app.use(express.static(path.join(__dirname, 'public')));
   //app.use(express.static(__dirname + '/public'));
+  app.use('/js',express.static(path.join(__dirname, 'public/javascripts')));
+  app.use(app.router);
 });
 
 app.configure('development', function(){
@@ -41,9 +42,11 @@ app.get('/form', routes.form);
 app.get('/game', routes.game);
 app.get('/edge', routes.edge);
 app.get('/score_list', routes.score_list);
+app.get('/stormfall', routes.stormfall);
 app.post('/create', routes.create);
 app.post('/money', routes.money);
 app.post('/score', routes.score);
+
 
 //http.createServer(app).listen(app.get('port'), function(){
 //  console.log("Express server listening on port " + app.get('port'));

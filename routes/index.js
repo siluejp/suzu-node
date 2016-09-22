@@ -58,3 +58,17 @@ exports.score = function(req, res){
 exports.edge = function(req, res){
   res.render('edge');
 };
+
+exports.stormfall = function(req, res){
+  Score.find({name: 'John'}, function(err, items){
+        items.sort(
+        function(a,b){
+            a_num = parseInt(a["score"]);
+            b_num = parseInt(b["score"]);
+            if( a_num > b_num ) return -1;
+            if( a_num < b_num ) return 1;
+            return 0;
+        });
+        res.render('stormfall/index', { title: 'Entry List', items: items })
+    });
+};
