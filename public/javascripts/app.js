@@ -116,7 +116,7 @@ angular.module('todoApp', ['ui.bootstrap'])
             var d = [
                 [
                 {axis:"攻："+todo.offence,value:todo.offence},
-                {axis:"防妖："+todo.defense, value:todo.max_defense},
+                {axis:"防妖："+todo.defense, value:todo.defense},
                 {axis:"防魔："+todo.max_defense, value:todo.max_defense},
                 {axis:"防騎："+todo.defense, value:todo.defense},
                 {axis:"防歩："+todo.defense, value:todo.defense},
@@ -127,7 +127,7 @@ angular.module('todoApp', ['ui.bootstrap'])
             var d = [
                 [
                 {axis:"攻："+todo.offence,value:todo.offence},
-                {axis:"防妖："+todo.defense, value:todo.max_defense},
+                {axis:"防妖："+todo.defense, value:todo.defense},
                 {axis:"防魔："+todo.defense, value:todo.defense},
                 {axis:"防騎："+todo.max_defense, value:todo.max_defense},
                 {axis:"防歩："+todo.defense, value:todo.defense},
@@ -138,7 +138,7 @@ angular.module('todoApp', ['ui.bootstrap'])
             var d = [
                 [
                 {axis:"攻："+todo.offence,value:todo.offence},
-                {axis:"防妖："+todo.defense, value:todo.max_defense},
+                {axis:"防妖："+todo.defense, value:todo.defense},
                 {axis:"防魔："+todo.defense, value:todo.defense},
                 {axis:"防騎："+todo.defense, value:todo.defense},
                 {axis:"防歩："+todo.max_defense, value:todo.max_defense},
