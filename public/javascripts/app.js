@@ -2,10 +2,10 @@ angular.module('todoApp', [])
   .controller('TodoListController', function() {
     var todoList = this;
     todoList.todos = [
-      {type:'妖獣', name:'Marennon', defense: 80, max_defense: 240, ammount: '', per: 0, output: 0, img_url: 'http://wiki.plarium.com/images/2/2c/Marennon.png'},
-      {type:'魔術', name:'Ogre', defense: 60, max_defense: 180, ammount: '', per: 0, output: 0, img_url: 'http://wiki.plarium.com/images/c/c5/Ogre.png'},
-      {type:'騎兵', name:'Orcish Raider', defense: 40, max_defense: 120, ammount: '', per: 0, output: 0, img_url: 'http://wiki.plarium.com/images/c/c1/Orcish_Raider.png'},
-      {type:'歩兵', name:'Orc', defense: 20, max_defense: 60, ammount: '', per: 0, output: 0, img_url: 'http://wiki.plarium.com/images/b/bf/Orc.png'},
+      {type:'妖獣', name:'Marennon', offence: 80, defense: 80, max_defense: 240, ammount: '', per: 0, output: 0, img_url: 'http://wiki.plarium.com/images/2/2c/Marennon.png'},
+      {type:'魔術', name:'Ogre', offence: 60, defense: 60, max_defense: 180, ammount: '', per: 0, output: 0, img_url: 'http://wiki.plarium.com/images/c/c5/Ogre.png'},
+      {type:'騎兵', name:'Orcish Raider', offence: 40, defense: 40, max_defense: 120, ammount: '', per: 0, output: 0, img_url: 'http://wiki.plarium.com/images/c/c1/Orcish_Raider.png'},
+      {type:'歩兵', name:'Orc', offence: 20, defense: 20, max_defense: 60, ammount: '', per: 0, output: 0, img_url: 'http://wiki.plarium.com/images/b/bf/Orc.png'},
     ],
  
     todoList.calc = function() {
