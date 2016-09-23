@@ -1,5 +1,5 @@
-angular.module('todoApp', [])
-  .controller('TodoListController', function() {
+angular.module('todoApp', ['ui.bootstrap'])
+  .controller('TodoListController', function($scope, $modal) {
     var todoList = this;
     todoList.todos = [
       {type:'妖獣', name:'Marennon', offence: 80, defense: 80, max_defense: 240, ammount: '', per: 0, output: 0, img_url: 'http://wiki.plarium.com/images/2/2c/Marennon.png'},
@@ -86,4 +86,100 @@ angular.module('todoApp', [])
         });
         return (rtn == output);
     };
+
+    todoList.openNewRecordForm = function(todo){
+        $scope.todo = todo;
+        $modal.open({
+            templateUrl: "T_newRecordForm",
+            scope: $scope
+        });
+    }
+
+    todoList.dispRaderChart = function(todo) {
+        var w = 150, h = 150;
+        var colorscale = d3.scale.category10();
+
+        //Data
+        switch (todo.type) {
+          case "妖獣":
+            var d = [
+                [
+                {axis:"攻："+todo.offence,value:todo.offence},
+                {axis:"防妖："+todo.max_defense, value:todo.max_defense},
+                {axis:"防魔："+todo.defense, value:todo.defense},
+                {axis:"防騎："+todo.defense, value:todo.defense},
+                {axis:"防歩："+todo.defense, value:todo.defense},
+                ]
+              ];
+              break;
+          case "魔術":
+            var d = [
+                [
+                {axis:"攻："+todo.offence,value:todo.offence},
+                {axis:"防妖："+todo.defense, value:todo.max_defense},
+                {axis:"防魔："+todo.max_defense, value:todo.max_defense},
+                {axis:"防騎："+todo.defense, value:todo.defense},
+                {axis:"防歩："+todo.defense, value:todo.defense},
+                ]
+              ];
+              break;
+          case "騎兵":
+            var d = [
+                [
+                {axis:"攻："+todo.offence,value:todo.offence},
+                {axis:"防妖："+todo.defense, value:todo.max_defense},
+                {axis:"防魔："+todo.defense, value:todo.defense},
+                {axis:"防騎："+todo.max_defense, value:todo.max_defense},
+                {axis:"防歩："+todo.defense, value:todo.defense},
+                ]
+              ];
+              break;
+          case "歩兵":
+            var d = [
+                [
+                {axis:"攻："+todo.offence,value:todo.offence},
+                {axis:"防妖："+todo.defense, value:todo.max_defense},
+                {axis:"防魔："+todo.defense, value:todo.defense},
+                {axis:"防騎："+todo.defense, value:todo.defense},
+                {axis:"防歩："+todo.max_defense, value:todo.max_defense},
+                ]
+              ];
+              break;
+        }
+
+        
+         
+        //Options for the Radar chart, other than default
+        var mycfg = {
+          w: w,
+          h: h,
+          maxValue: 0.6,
+          levels: 5,
+          ExtraWidthX: 300
+        }
+         
+        //Call function to draw the Radar chart
+        //Will expect that data is in %'s
+        RadarChart.draw('#chart', d, mycfg);
+         
+        ////////////////////////////////////////////
+        /////////// Initiate legend ////////////////
+        ////////////////////////////////////////////
+         
+        var svg = d3.select('#body')
+          .selectAll('svg')
+          .append('svg')
+          .attr("width", w)
+          .attr("height", h+100)
+         
+        //Create the title for the legend
+        var text = svg.append("text")
+          .attr("class", "title")
+          .attr("x", w+(w/2) )
+          .attr("y", h+80)
+          .attr("text-anchor", "middle")
+          .attr("font-size", "18px")
+          .attr("font-weight", 500)
+          .text("Anakin Skywalker");
+    }
   });
