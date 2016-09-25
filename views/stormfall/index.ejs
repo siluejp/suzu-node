@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="todoApp">
+<html ng-app="stormfallApp">
 <head>
   <title>Strom Fall wiki</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +36,7 @@
       <p class="lead">戦場（攻撃）の敵戦力を分析して最適な攻撃ユニットを提案します。</p>
     </div>
 
-    <div ng-controller="TodoListController as todoList">
+    <div ng-controller="StormFallController as sf" ng-cloak >
         <table class="table">
           <tr>
             <th>兵数</th>
@@ -46,28 +46,28 @@
             <th>防御力（最大）</th>
             <th>割合</th>
           </tr>
-          <tr ng-repeat="todo in todoList.todos">
-            <td><input ng-change="todoList.calc()" type="number" ng-model="todo.ammount" min="0" max="9999"></td>
-            <td>{{todo.type}}</td>
-            <td><img class="img-rounded" ng-src="{{todo.img_url}}" alt="Description" width="20px" />
-              <button class="glyphicon glyphicon-search" ng-click="todoList.openNewRecordForm(todo)" type="submit"></button>
-              <span class="hidden-xs" style="padding-left: 10px;">{{todo.name}}</span>
+          <tr ng-repeat="troop in sf.troops">
+            <td><input ng-focus="$(this).select()" ng-change="sf.calc()" type="number" ng-model="troop.ammount" min="0" max="9999"></td>
+            <td>{{troop.type}}</td>
+            <td>
+              <img class="img-rounded" ng-src="{{troop.img_url}}" ng-click="sf.openNewRecordForm(troop)" alt="{{troop.type}}" style="width: 20px; cursor: pointer;" />
+              <span class="hidden-xs" style="padding-left: 10px;">{{troop.name}}</span>
             </td>
-            <td>{{todo.offence * todo.ammount}}</td>
-            <td>{{todo.defense * todo.ammount}}（{{todo.max_defense * todo.ammount}}）</td>
-            <td>{{todo.per | number:2}}</td>
+            <td>{{troop.offence * troop.ammount}}</td>
+            <td>{{troop.defense * troop.ammount}}（{{troop.max_defense * troop.ammount}}）</td>
+            <td>{{troop.per | number:2}}</td>
           </tr>
         </table>
-        <div ng-if="todoList.has_outputs()">
+        <div ng-if="sf.has_outputs()">
           <h2>分析結果</h2>
           <p class="lead">一番低い数値になる兵種で攻めるべし</p>
           <blockquote>
-            <div ng-repeat="todo in todoList.todos" >
-              <div>{{todo.type}}のみ: {{todo.output | number}}
-                <span class="label label-success" style="font-size: 11px;" ng-if="todoList.is_min_output(todo.output)">オススメ</span>
+            <div ng-repeat="troop in sf.troops" >
+              <div>{{troop.type}}のみ: {{troop.output | number}}
+                <span class="label label-success" style="font-size: 11px;" ng-if="sf.is_min_output(troop.output)">オススメ</span>
               </div>
             </div>
-            <div>平均：{{todoList.avg_defense() | number}}</div>
+            <div>平均：{{sf.avg_defense() | number}}</div>
           </blockquote>
           <p>
             <small>※ ○○のみで攻撃した場合の敵防御力です。</small><br>
@@ -82,16 +82,16 @@
   <script id="T_newRecordForm" type="text/ng-template">
       <div class="modal-header">
           <button type="button" class="close" ng-click="$dismiss()">&#215;</button>
-          <h3>{{todo.name}}</h3>
+          <h3>{{troop.name}}</h3>
       </div>
       <div class="modal-body">
           <div class="row">
             <div class="col-md-3 col-xs-12" style="padding-bottom: 10px;">
-              <img class="img-rounded" ng-src="{{todo.img_url}}" alt="Description" style="width: 100%;" />
+              <img class="img-rounded" ng-src="{{troop.img_url}}" alt="{{troop.type}}" style="width: 100%;" />
             </div>
             <div class="col-md-9 col-xs-12">
               <div id="chart"></div>
-              {{todoList.dispRaderChart(todo)}}
+              {{sf.dispRaderChart(troop)}}
             </div>
           </div>
       </div>
