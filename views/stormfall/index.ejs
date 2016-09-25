@@ -33,7 +33,7 @@
 
     <div class="">
       <h1>戦力分析 <small>Battlegrounds Analytics</small></h1>
-      <p class="lead">戦場（攻撃）の敵戦力を分析して最適な攻撃ユニットを提案します。</p>
+      <p class="lead">戦場（イーグルの巣）の敵戦力を分析して最適なユニットを提案します。</p>
     </div>
 
     <div ng-controller="StormFallController as sf" ng-cloak >
@@ -62,6 +62,8 @@
           <h2>分析結果</h2>
           <p class="lead">一番低い数値になる兵種で攻めるべし</p>
           <blockquote>
+            <div>攻撃力：{{sf.get_total_offence() | number}}</div>
+            <small>防御力</small>
             <div ng-repeat="troop in sf.troops" >
               <div>{{troop.type}}のみ: {{troop.output | number}}
                 <span class="label label-success" style="font-size: 11px;" ng-if="sf.is_min_output(troop.output)">オススメ</span>

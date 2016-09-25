@@ -67,6 +67,15 @@ angular.module('stormfallApp', ['ui.bootstrap'])
         return sum / sf.troops.length;
     };
 
+    sf.get_total_offence = function() {
+        var sum = 0;
+        angular.forEach(sf.troops, function(troop) {
+          sum += troop.offence * troop.ammount;
+        });
+
+        return sum;
+    };
+
     sf.has_outputs = function() {
         var rtn = true;
         angular.forEach(sf.troops, function(troop) {
