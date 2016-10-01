@@ -1,3 +1,9 @@
 /suzu-node/nbproject/private/
-/node_modules/socket.io/node_modules/socket.io-client/node_modules/.bin/
-/node_modules/socket.io/node_modules/socket.io-client/node_modules/ws/build/Release/.deps/
+logs/*
+!.gitkeep
+node_modules/
+tmp
+.idea
+.DS_Store
+angular-phonecat-snapshots
+bower_components/
