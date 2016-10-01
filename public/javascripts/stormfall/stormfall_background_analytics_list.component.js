@@ -1,8 +1,8 @@
 angular.
   module('stormfallBackgroundAnalyticsList').
   component('stormfallBackgroundAnalyticsList', {
-    templateUrl: '/js/stormfall/stormfall.template.html',
-    controller: function stormfallBackgroundAnalyticsListController($scope, $modal) {
+    templateUrl: '/js/stormfall/stormfall_background_analytics_list.template.html',
+    controller: function StormfallBackgroundAnalyticsListController($scope, $modal) {
 
       var self = this;
 
