@@ -1,0 +1,63 @@
+<div ng-cloak >
+    <table class="table">
+      <tr>
+        <th>兵数</th>
+        <th>兵種</th>
+        <th>名前</th>
+        <th>攻撃力</th>
+        <th>防御力（最大）</th>
+        <th>割合</th>
+      </tr>
+      <tr ng-repeat="troop in $ctrl.troops">
+        <td><input ng-focus="$(this).select()" ng-change="$ctrl.calc()" type="number" ng-model="troop.ammount" min="0" max="9999"></td>
+        <td>{{troop.type}}</td>
+        <td>
+          <img class="img-rounded" ng-src="{{troop.img_url}}" ng-click="$ctrl.openNewRecordForm(troop)" alt="{{troop.type}}" style="width: 20px; cursor: pointer;" />
+          <span class="hidden-xs" style="padding-left: 10px;">{{troop.name}}</span>
+        </td>
+        <td>{{troop.offence * troop.ammount}}</td>
+        <td>{{troop.defense * troop.ammount}}（{{troop.max_defense * troop.ammount}}）</td>
+        <td>{{troop.per | number:2}}</td>
+      </tr>
+    </table>
+    <div ng-if="$ctrl.has_outputs()">
+      <h2>分析結果</h2>
+      <p class="lead">一番低い数値になる兵種で攻めるべし</p>
+      <blockquote>
+        <div>攻撃力：{{$ctrl.get_total_offence() | number}}</div>
+        <small>防御力</small>
+        <div ng-repeat="troop in $ctrl.troops" >
+          <div>{{troop.type}}のみ: {{troop.output | number}}
+            <span class="label label-success" style="font-size: 11px;" ng-if="$ctrl.is_min_output(troop.output)">オススメ</span>
+          </div>
+        </div>
+        <div>平均：{{$ctrl.avg_defense() | number}}</div>
+      </blockquote>
+      <p>
+        <small>※ ○○のみで攻撃した場合の敵防御力です。</small><br>
+        <small>※ 平均が敵の損害の基準となります。</small><br>
+        <small>※ 補正値を考慮していないため１〜２割増の戦力で挑むべし。</small>
+      </p>
+    </div>
+</div>
+
+<script id="T_newRecordForm" type="text/ng-template">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()">&#215;</button>
+        <h3>{{troop.name}}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+          <div class="col-md-3 col-xs-12" style="padding-bottom: 10px;">
+            <img class="img-rounded" ng-src="{{troop.img_url}}" alt="{{troop.type}}" style="width: 100%;" />
+          </div>
+          <div class="col-md-9 col-xs-12">
+            <div id="chart"></div>
+            {{$ctrl.dispRaderChart(troop)}}
+          </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn" ng-click="$dismiss()">閉じる</button>
+    </div>
+</script>
