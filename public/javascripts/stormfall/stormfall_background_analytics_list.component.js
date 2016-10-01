@@ -1,5 +1,5 @@
 angular.
-  module('stormfallBackgroundAnalyticsList').
+  module('stormfallApp').
   component('stormfallBackgroundAnalyticsList', {
     templateUrl: '/js/stormfall/stormfall_background_analytics_list.template.html',
     controller: function StormfallBackgroundAnalyticsListController($scope, $modal, $http) {
@@ -67,7 +67,7 @@ angular.
       self.avg_defense = function() {
 
           if (!self.troops) return;
-        
+
           var sum = 0;
           angular.forEach(self.troops, function(troop) {
             sum += troop.output;

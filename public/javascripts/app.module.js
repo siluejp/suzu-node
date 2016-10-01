@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('stormfallApp', [
+angular.module('suzuNodeApp', [
   'ui.bootstrap',
-  'stormfallBackgroundAnalyticsList'
+  'stormfallApp'
 ]);

@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('stormfallBackgroundAnalyticsList', []);
+angular.module('stormfallApp', []);

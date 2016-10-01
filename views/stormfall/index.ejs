@@ -1,7 +1,7 @@
 <!doctype html>
-<html ng-app="stormfallApp">
+<html ng-app="suzuNodeApp">
 <head>
-  <title>Strom Fall wiki</title>
+  <title>Stromfall wiki</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
@@ -29,16 +29,9 @@
     </div>
   </nav>
 
-  <div class="container" style="padding-top: 40px;">
+  <stormfall-background-analytics-list></stormfall-background-analytics-list>
 
-    <div class="">
-      <h1>戦力分析 <small>Battlegrounds Analytics</small></h1>
-      <p class="lead">戦場（イーグルの巣）の敵戦力を分析して最適なユニットを提案します。</p>
-    </div>
-
-    <stormfall-background-analytics-list></stormfall-background-analytics-list>
-
-  </div><!-- /.container -->
+  <stormfall-calc-tournament-points></stormfall-calc-tournament-points>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -49,6 +42,7 @@
   <script src="/js/app.module.js"></script>
   <script src="/js/stormfall/stormfall.module.js"></script>
   <script src="/js/stormfall/stormfall_background_analytics_list.component.js"></script>
+  <script src="/js/stormfall/stormfall_calc_tournament_points.component.js"></script>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

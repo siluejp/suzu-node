@@ -3,7 +3,7 @@
 describe('stormfallBackgroundAnalyticsList', function() {
 
   // Load the module that contains the `phoneList` component before each test
-  beforeEach(module('stormfallBackgroundAnalyticsList'));
+  beforeEach(module('stormfallApp'));
 
   // Test the controller
   describe('StormfallBackgroundAnalyticsListController', function() {

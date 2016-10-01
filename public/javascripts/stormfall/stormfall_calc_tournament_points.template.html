@@ -1,0 +1,20 @@
+<div class="container" style="padding-top: 40px;">
+
+  <div class="">
+    <h1>トーナメントポイント予測 <small>Tournament Point Prediction</small></h1>
+    <p class="lead">獲得トーナメントポイントを計算できます。</p>
+  </div>
+
+
+  <div class="input-group">
+    <span class="input-group-addon"><span class="glyphicon glyphicon-flag"></span></span>
+    <input class="text-right form-control" placeholder="トーナメントポイント" ng-change="$ctrl.calc_from_unit()" type="number" ng-model="$ctrl.point" min="0">
+    <span class="input-group-addon">ポイント</span>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon"><span class="glyphicon glyphicon-tower"></span></span>
+    <input class="text-right form-control" placeholder="敵損害ユニット" ng-change="$ctrl.calc_from_point()" type="number" ng-model="$ctrl.unit_ammount" min="0">
+    <span class="input-group-addon">敵損害　</span>
+  </div>
+
+</div><!-- /.container -->
