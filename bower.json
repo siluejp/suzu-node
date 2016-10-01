@@ -1,0 +1,14 @@
+{
+  "name": "stormfall",
+  "description": "stormfall wiki",
+  "version": "0.0.1",
+  "homepage": "http://suzu-node.herokuapp.com/",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.5.x",
+    "angular-mocks": "1.5.x",
+    "angular-route": "1.5.x",
+    "bootstrap": "3.3.x"
+  }
+}
