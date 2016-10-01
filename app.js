@@ -6,6 +6,7 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , stormfall = require('./routes/stormfall')
   , http = require('http')
   , path = require('path');
 
@@ -42,7 +43,8 @@ app.get('/form', routes.form);
 app.get('/game', routes.game);
 app.get('/edge', routes.edge);
 app.get('/score_list', routes.score_list);
-app.get('/stormfall', routes.stormfall);
+app.get('/stormfall', stormfall.index);
+app.get('/stormfall/troops.json', stormfall.troops);
 app.post('/create', routes.create);
 app.post('/money', routes.money);
 app.post('/score', routes.score);
@@ -82,15 +84,15 @@ io
        data.time = Date.now();
        chats.push(data);
        //broadcast('chat.add', data);
-       
+
         //イベントを実行した方に実行する
         socket.emit('chat.add', data);
         //イベントを実行した方以外に実行する
         socket.broadcast.emit('chat.add', data);
-       
+
     });
     socket.on('disconnect', function() {
-       delete sockets[socket.id]; 
+       delete sockets[socket.id];
     });
  });
 
