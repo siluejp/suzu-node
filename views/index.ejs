@@ -1,142 +1,87 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>suzu-node WebRTC DEMO</title>
-<style>
-video {
-    border:5px solid black;
-    width:480px;
-    height:360px;
-}
-canvas {
-    border:5px solid black;
-    width:480px;
-    height:360px;
-}
-button {
-    font: 18px sans-serif;
-    padding: 8px;
-}  
-.grayscale {
-  -webkit-filter: grayscale(1);
-}
-.sepia {
-  -webkit-filter: sepia(1);
-}
-.invert {
-  -webkit-filter: invert(1);
-}
-.blur {
-  -webkit-filter: blur(3px);
-}
-</style>
-</head>
-<body>
-    <p>enchant.jpデモアプリは<a href="/game">コチラ</a><br />
-    Rankingは<a href="/score_list">コチラ</a></p>
-    <p>Socket.IOデモアプリは<a href="/socket">コチラ</a></p>
-<h1>WebRTC DEMO getUserMedia | suzu-node</h1>
-<h2>ビデオチャットの下準備。カメラで遊ぼう</h2>
-<p>StartでカメラをONにして、Change Filterでエフェクトをかけて、<br/>
-最後にSnapshotでお気に入りの一枚を撮ろう</p>
-<video id="vid" autoplay="true"></video>
-<canvas id="cvs"></canvas>
-<br>
-<button id="btn1" onclick="start()">Start</button>
-<button id="btn2" onclick="change()">Change Filter</button>
-<button id="btn3" onclick="snap()">Snapshot</button>
-<button id="btn4" onclick="download()">Download</button>
-<script>
-filters = ["", "sepia", "invert", "blur", "grayscale"];
-findex = 0;
-video = document.getElementById("vid");
-canvas = document.getElementById("cvs");
-canvas.width = 480;
-canvas.height = 360;  
-btn2.disabled = true;
-btn3.disabled = true;
-btn4.disabled = true;
-function start() {
-    var userAgent = window.navigator.userAgent.toLowerCase();
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../favicon.ico"> -->
 
-    if (userAgent.indexOf('chrome') != -1) {
-      navigator.webkitGetUserMedia({video:true}, gotStream, function(err) {alert("An error occured! " + err);});
-    } else if (userAgent.indexOf('gecko') != -1) {
-    alert('FF');  
-    startVideo();
-    } else {
-      return false;
-    }
-  
-  btn1.disabled = true;
-} 
-function startVideo() {
-    navigator.mozGetUserMedia({video: true},
-        function(stream) {
-            video.src = window.URL.createObjectURL(stream);
-            video.play();
-            btn2.disabled = false;
-            btn3.disabled = false;
-            btn4.disabled = false;
-        },
-    function(err) {
-        alert("An error occured! " + err);
-    });
-}
-function gotStream(stream) {
-  video.src = webkitURL.createObjectURL(stream);
-  btn2.disabled = false;
-  btn3.disabled = false;
-  btn4.disabled = false;
-}
-function change() {
-  video.className = '';
-  findex = (findex + 1) % filters.length;
-  if (findex != 0)
-    video.classList.add(filters[findex]);
-}
-function snap() {
-  canvas.className = '';
-  if (findex != 0)
-    canvas.classList.add(filters[findex]);
-  canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
-}
-function download() {
-  if (canvas.getContext) {
-    var ctx = canvas.getContext('2d');
-    //色々な図形の描画など・・・・・
-    //図形の保存
-    var img=new Image();
- 
-    //保存できるタイプは、'image/png'と'image/jpeg'の2種類
- 
-    var type = 'image/png';  
- 
-    //imgオブジェクトのsrcに格納。
-    img.src = canvas.toDataURL(type);
-    //念のため、onloadで読み込み完了を待つ。
-    img.onload = function(){
-       window.open(img.src, "", "width=480,height=360");
-    };
-  }
-}
-</script>
-<h3>感想カンソー powered by Node.js, Express Framework, MongoDB, on Heroku and WebRTC!!</h3>
-<p><a href="/form">Shout!</a></p>
-<ul>
-<% items.forEach(function(item){ %>
-  <li><%= item.text %></li>
-<% }) %>
-</ul>
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <title>suzu-node</title>
 
-    ga('create', 'UA-84650850-1', 'auto');
-    ga('send', 'pageview');
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  </script>
-</body>
+    <!-- Custom styles for this template -->
+    <link href="/css/main.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">suzu-node</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="/stormfall">Game</a></li>
+                  <li><a href="/webrtc">Labo</a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+            <h1 class="cover-heading">Cover your page.</h1>
+            <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+            <p class="lead">
+              <a href="#" class="btn btn-lg btn-default">Learn more</a>
+            </p>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.9.0/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-84650850-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
 </html>

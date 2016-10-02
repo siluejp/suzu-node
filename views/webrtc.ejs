@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>suzu-node WebRTC DEMO</title>
+<style>
+video {
+    border:5px solid black;
+    width:480px;
+    height:360px;
+}
+canvas {
+    border:5px solid black;
+    width:480px;
+    height:360px;
+}
+button {
+    font: 18px sans-serif;
+    padding: 8px;
+}
+.grayscale {
+  -webkit-filter: grayscale(1);
+}
+.sepia {
+  -webkit-filter: sepia(1);
+}
+.invert {
+  -webkit-filter: invert(1);
+}
+.blur {
+  -webkit-filter: blur(3px);
+}
+</style>
+</head>
+<body>
+    <p>enchant.jpデモアプリは<a href="/game">コチラ</a><br />
+    Rankingは<a href="/score_list">コチラ</a></p>
+    <p>Socket.IOデモアプリは<a href="/socket">コチラ</a></p>
+<h1>WebRTC DEMO getUserMedia | suzu-node</h1>
+<h2>ビデオチャットの下準備。カメラで遊ぼう</h2>
+<p>StartでカメラをONにして、Change Filterでエフェクトをかけて、<br/>
+最後にSnapshotでお気に入りの一枚を撮ろう</p>
+<video id="vid" autoplay="true"></video>
+<canvas id="cvs"></canvas>
+<br>
+<button id="btn1" onclick="start()">Start</button>
+<button id="btn2" onclick="change()">Change Filter</button>
+<button id="btn3" onclick="snap()">Snapshot</button>
+<button id="btn4" onclick="download()">Download</button>
+<script>
+filters = ["", "sepia", "invert", "blur", "grayscale"];
+findex = 0;
+video = document.getElementById("vid");
+canvas = document.getElementById("cvs");
+canvas.width = 480;
+canvas.height = 360;
+btn2.disabled = true;
+btn3.disabled = true;
+btn4.disabled = true;
+function start() {
+    var userAgent = window.navigator.userAgent.toLowerCase();
+
+    if (userAgent.indexOf('chrome') != -1) {
+      navigator.webkitGetUserMedia({video:true}, gotStream, function(err) {alert("An error occured! " + err);});
+    } else if (userAgent.indexOf('gecko') != -1) {
+    alert('FF');
+    startVideo();
+    } else {
+      return false;
+    }
+
+  btn1.disabled = true;
+}
+function startVideo() {
+    navigator.mozGetUserMedia({video: true},
+        function(stream) {
+            video.src = window.URL.createObjectURL(stream);
+            video.play();
+            btn2.disabled = false;
+            btn3.disabled = false;
+            btn4.disabled = false;
+        },
+    function(err) {
+        alert("An error occured! " + err);
+    });
+}
+function gotStream(stream) {
+  video.src = webkitURL.createObjectURL(stream);
+  btn2.disabled = false;
+  btn3.disabled = false;
+  btn4.disabled = false;
+}
+function change() {
+  video.className = '';
+  findex = (findex + 1) % filters.length;
+  if (findex != 0)
+    video.classList.add(filters[findex]);
+}
+function snap() {
+  canvas.className = '';
+  if (findex != 0)
+    canvas.classList.add(filters[findex]);
+  canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+}
+function download() {
+  if (canvas.getContext) {
+    var ctx = canvas.getContext('2d');
+    //色々な図形の描画など・・・・・
+    //図形の保存
+    var img=new Image();
+ 
+    //保存できるタイプは、'image/png'と'image/jpeg'の2種類
+ 
+    var type = 'image/png'; 
+ 
+    //imgオブジェクトのsrcに格納。
+    img.src = canvas.toDataURL(type);
+    //念のため、onloadで読み込み完了を待つ。
+    img.onload = function(){
+       window.open(img.src, "", "width=480,height=360");
+    };
+  }
+}
+</script>
+<h3>感想カンソー powered by Node.js, Express Framework, MongoDB, on Heroku and WebRTC!!</h3>
+<p><a href="/form">Shout!</a></p>
+<ul>
+<% items.forEach(function(item){ %>
+  <li><%= item.text %></li>
+<% }) %>
+</ul>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-84650850-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</body>
+</html>

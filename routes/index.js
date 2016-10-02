@@ -2,9 +2,16 @@ var model = require('../model');
 var Post = model.Post;
 var Score = model.Score;
 
+
 exports.index = function(req, res){
   Post.find({}, function(err, items){
-      res.render('index', { title: 'Entry List', items: items })
+      res.render('index')
+    });
+};
+
+exports.webrtc = function(req, res){
+  Post.find({}, function(err, items){
+      res.render('webrtc', { title: 'Entry List', items: items })
     });
 };
 
@@ -19,7 +26,7 @@ exports.create = function(req, res){
        console.log(err);
        res.redirect('back');
      } else {
-       res.redirect('/');
+       res.redirect('webrtc');
      }
     });
 };

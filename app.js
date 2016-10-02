@@ -39,6 +39,7 @@ app.configure('production', function(){
 });
 
 app.get('/', routes.index);
+app.get('/webrtc', routes.webrtc);
 app.get('/users', user.list);
 app.get('/form', routes.form);
 app.get('/game', routes.game);
