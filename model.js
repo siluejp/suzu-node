@@ -1,4 +1,4 @@
-const MONGO_URL = process.env.MONGOHQ_URL || 'mongodb://localhost/firstapp';
+const MONGO_URL = process.env.MONGODB_URI || 'mongodb://localhost/firstapp';
 
 var mongoose = require('mongoose');
 var db = mongoose.connect(MONGO_URL);
