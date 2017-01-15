@@ -25,6 +25,7 @@ app.configure(function(){
   //app.use(express.static(__dirname + '/public'));
   app.use('/js',express.static(path.join(__dirname, 'public/javascripts')));
   app.use('/css',express.static(path.join(__dirname, 'public/stylesheets')));
+  app.use('/img',express.static(path.join(__dirname, 'public/images')));
   app.use(app.router);
 });
 
