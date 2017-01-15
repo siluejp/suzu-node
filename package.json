@@ -21,7 +21,8 @@
     "express": "3.0.3",
     "jade": "*",
     "ejs": "*",
-    "socket.io": "*"
+    "socket.io": "*",
+    "mongoose": "*"
   },
   "devDependencies": {
     "bower": "^1.7.7",
