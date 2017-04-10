@@ -16,7 +16,7 @@
           <th>割合</th>
         </tr>
         <tr ng-repeat="troop in $ctrl.troops">
-          <td><input ng-focus="$(this).select()" ng-change="$ctrl.calc()" type="number" ng-model="troop.ammount" min="0" max="9999"></td>
+          <td><input ng-focus="$(this).select()" ng-change="$ctrl.calc()" type="number" ng-model="troop.ammount" min="0" max="99999"></td>
           <td>{{troop.type}}</td>
           <td>
             <img class="img-rounded" ng-src="{{troop.img_url}}" ng-click="$ctrl.openNewRecordForm(troop)" alt="{{troop.type}}" style="width: 20px; cursor: pointer;" />
